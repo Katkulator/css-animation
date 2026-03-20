@@ -1,0 +1,55 @@
+:root {
+  color-scheme: dark;
+  --bg-base: #07111f;
+  --bg-top: #0d1b33;
+  --bg-bottom: #020812;
+  --panel: rgba(12, 26, 48, 0.72);
+  --line: rgba(149, 184, 255, 0.16);
+  --text: #dce8ff;
+  --glow: rgba(56, 123, 255, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(88, 140, 255, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(19, 64, 146, 0.28), transparent 34%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-base) 55%, var(--bg-bottom));
+}
+
+.app {
+  min-height: 100vh;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.app::before,
+.app::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+.app::before {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(18, 36, 67, 0.3), rgba(4, 12, 23, 0.08));
+  box-shadow: inset 0 1px 0 rgba(185, 211, 255, 0.05);
+}
+
+.app::after {
+  inset: auto 10% 6% 10%;
+  height: 180px;
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(64px);
+}

@@ -2,10 +2,15 @@
   "name": "css-animation",
   "version": "1.0.0",
   "description": "Minimal CSS animation practice app",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "echo \"No tests configured\""
+  },
+  "devDependencies": {
+    "vite": "^8.0.2"
   },
   "keywords": [],
   "author": "",

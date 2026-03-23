@@ -22,6 +22,7 @@ body {
     radial-gradient(circle at top, rgba(88, 140, 255, 0.18), transparent 28%),
     radial-gradient(circle at bottom right, rgba(19, 64, 146, 0.28), transparent 34%),
     linear-gradient(180deg, var(--bg-top), var(--bg-base) 55%, var(--bg-bottom));
+  cursor: none;
 }
 
 .app {
@@ -40,16 +41,100 @@ body {
   pointer-events: none;
 }
 
-.app::before {
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(18, 36, 67, 0.3), rgba(4, 12, 23, 0.08));
-  box-shadow: inset 0 1px 0 rgba(185, 211, 255, 0.05);
-}
-
 .app::after {
   inset: auto 10% 6% 10%;
   height: 180px;
   border-radius: 50%;
   background: var(--glow);
   filter: blur(64px);
+}
+
+/*Flickering text*/
+.text-flicker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8rem;
+  font-weight: bold;
+  gap: 100px;
+}
+
+.text-flicker-word {
+  letter-spacing: 0.01rem;
+}
+
+.text-flicker-word span {
+  display: inline-block;
+  opacity: 0;
+  animation: flicker 4s forwards;
+}
+
+.text-flicker-word span:nth-child(1) { animation-delay: 0.4s; }
+.text-flicker-word span:nth-child(2) { animation-delay: 0.1s; }
+.text-flicker-word span:nth-child(3) { animation-delay: 0.9s; }
+.text-flicker-word span:nth-child(4) { animation-delay: 0.2s; }
+.text-flicker-word span:nth-child(5) { animation-delay: 0.6s; }
+.text-flicker-word span:nth-child(6) { animation-delay: 0.3s; }
+.text-flicker-word span:nth-child(7) { animation-delay: 0.7s; }
+.text-flicker-word span:nth-child(8) { animation-delay: 0.1s; }
+.text-flicker-word span:nth-child(9) { animation-delay: 0.2s; }
+
+@keyframes flicker {
+  0%   { opacity: 0; filter: blur(3px); }
+  10%  { opacity: 1; filter: blur(0); }
+  20%  { opacity: 0; filter: blur(2px); }
+  30%  { opacity: 1; filter: blur(0); }
+  45%  { opacity: 0; }
+  60%  { opacity: 1; }
+  100% { opacity: 1; filter: blur(0); }
+}
+
+/* Cursor */
+.cursor {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #8ac4de;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, background 0.2s ease;
+  z-index: 9999;
+}
+
+.cursor-inner {
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid #8ac4de;
+  border-radius: 50%;
+  position: relative;
+}
+
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  background: #8ac4de;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.crosshair::after {
+  transform: translate(-50%, -50%) rotate(90deg);
 }

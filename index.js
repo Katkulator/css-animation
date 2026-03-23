@@ -1,9 +1,10 @@
-const cursor = document.querySelector('.cursor');
 const crosshair = document.querySelector('.crosshair');
 
 document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.pageX + 'px';
-    cursor.style.top = e.pageY + 'px';
+    crosshair.style.left = e.pageX + 'px';
+    crosshair.style.top = e.pageY + 'px';
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 })
 
 let mouseX = window.innerWidth / 2;
@@ -18,17 +19,12 @@ let lastY = mouseY;
 let rotation = 0;
 let rotationSpeed = 0;
 
-document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
 function animateCrosshair() {
     currentX += (mouseX - currentX) * 0.18;
     currentY += (mouseY - currentY) * 0.18;
 
-    cursor.style.left = `${currentX}px`;
-    cursor.style.top = `${currentY}px`;
+    crosshair.style.left = `${currentX}px`;
+    crosshair.style.top = `${currentY}px`;
 
     const dx = currentX - lastX;
     const dy = currentY - lastY;
